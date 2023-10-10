@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 5
+
+struct queue {
+    int f;
+    int r;
+    int data[SIZE];
+};
+typedef struct queue QUEUE;
+
+void enqueue(QUEUE *q, int ele) {
+    if (q->r == SIZE-1) {
+        printf("Queue overflow\n");
+        return;
+    }
+    q->data[++(q->r)] = ele;
+}
+
+void dequeue(QUEUE *q) {
+    if (q->r < q->f) {
+        printf("Queue underflow\n");
+        return;
+    }
+    printf("Deleted element: %d\n", q->data[(q->f)++]);
+}
+
+void display(QUEUE *q) {
+    if (q->r < q->f) {
+        printf("Queue is empty\n");
+        return;
+    }
+    printf("Queue elements: ");
+    for (int i = q->f; i <= q->r; i++) {
+        printf("%d ", q->data[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    QUEUE q;
+    q.f = 0;
+    q.r = -1;
+    int ele, choice;
+
+    while (1) {
+        printf("\nQueue Menu:\n");
+        printf("1. Enqueue\n 2. Dequeue\n 3. Display\n 4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter element to enqueue: ");
+                scanf("%d", &ele);
+                enqueue(&q, ele);
+                break;
+
+            case 2:
+                dequeue(&q);
+                break;
+
+            case 3:
+                display(&q);
+                break;
+
+            case 4:
+                exit(0);
+
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
+}
