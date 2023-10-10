@@ -2,12 +2,8 @@
 
 Welcome to the Data Structures and Algorithms (DSA) code repository! This repository is your personal space to store and organize your DSA implementations and practice code. Whether you're a beginner or an experienced programmer, this repository will help you keep track of your DSA journey.
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Directory Structure](#directory-structure)
-- [Contribution Guidelines](#contribution-guidelines)
-- [License](#license)
+
+
 
 ## Introduction
 
