@@ -1,2 +1,2 @@
 # DSA
-All dsa codes and algorithms in a simgle repo
+All dsa codes and algorithms in a single repo
