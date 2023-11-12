@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 5
+struct stack
+{
+    int top;
+    int item[MAX];
+}s;
+void insert(int item,struct stack *);
+void delete(struct stack *);
+void display(struct stack *);
+int main()
+{
+    s.top=-1;
+    int ch,item;
+    while(1)
+    {
+        printf("\n enter the choice:");
+        printf("\n 1.Insert\n 2.Delete\n 3.Display\n 4.Exit\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:printf("\n enter the item:");
+            scanf("%d",&item);
+            insert(item,&s);
+            break;
+            case 2:delete(&s);
+            break;
+            case 3:display(&s);
+            break;
+            case 4:exit(0);
+            default:printf("\n Invalid Choice");
+        }
+    }
+}
+void insert(int item,struct stack *s)
+{
+    if(s->top==MAX-1)
+    {
+        printf("\n stack overflow");
+    }
+    else
+    {
+        (s->top)++;
+        s->item[s->top]=item;
+    }
+
+}
+void delete(struct stack *s)
+{
+    int item;
+    if(s->top==-1)
+    {
+        printf("stack is empty");
+    }
+    else
+    {
+        item=s->item[s->top];
+        printf("\n deleted element is %d",item);
+        s->top--;
+    }
+}
+void display(struct stack *s)
+{
+
+    if(s->top==-1)
+    {
+        printf("\n stack is empty");
+    }
+    else
+    {
+        printf("\n the contents are:");
+        for(int i=0;i<=s->top;i++)
+        {
+            printf("%d\n",s->item[i]);
+        }
+        printf("\n");
+
+
+    }
+}
+
