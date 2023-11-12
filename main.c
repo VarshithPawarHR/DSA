@@ -1,73 +1,97 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 5
 
-struct queue
+struct node
 {
-    int q[MAX];
-    int front;
-    int rear;
+    int info;
+    struct node *link;
+
 };
+typedef struct node *NODE;
 
-void insert(struct queue *, int value);
-void deleteitem(struct queue *);
-void display(struct queue *);
-
-int main()
+NODE getnode()
 {
-    struct queue s;
-    s.front = 0;
-    s.rear = -1;
-    int choice, value;
-
-    while (1)
+    NODE X;
+    X= (NODE)malloc(sizeof(struct node));
+    if(X== NULL)
     {
-        printf("Choose an option:\n");
-        printf("1. Insert\n2. Delete\n3. Display\n4. Exit\n");
-        scanf("%d", &choice);
+        printf("NOI MEM SPACE");
+    }
+    return(X);
+}
 
-        switch (choice)
+void freenode(NODE X)
+{
+    free(X);
+}
+NODE insertfront(NODE first, int value)
+{
+    NODE temp;
+    temp =getnode();
+    temp-> info = value;
+    temp->link=NULL;
+    if(first==NULL)
+        return(temp);
+
+    temp->link= first;
+    return (temp);
+}
+NODE deletefront(NODE first)
+{
+NODE temp;
+if(first==NULL)
+{
+    printf("stack is empty \n");
+}
+temp=first;
+printf("delted element is %d \n",first->info);
+freenode(first);
+return(temp);
+}
+void display( NODE first)
+{
+    NODE cur;
+    if(first==NULL)
+        printf("stack is empty");
+    if(first->link==NULL)
+        printf("%d",first->info);
+    else
+    {
+        printf("contents are : \n");
+        cur=first;
+        while(cur!=NULL)
         {
-            case 1:
-                printf("Enter the number you want to insert: ");
-                scanf("%d", &value);
-                insert(&s, value);
-                break;
-            case 2:
-                deleteitem(&s);
-                break;
-            case 3:
-                display(&s);
-                break;
-            case 4:
-                exit(0);
-                break;
+            printf("%d",cur->info);
+            cur=cur->link;
         }
     }
 
+
+}
+int main()
+{
+    int choice,value;
+    NODE first = NULL;
+    while(1)
+    {
+        printf("enter your choice \n");
+        printf("1.insert \n 2.delete \n 3.display \n 4.exit \n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+        case 1:
+            printf("enter the value you want to insert");
+            scanf("%d", &value);
+           first = insertfront(first,value);
+            break;
+        case 2:
+          first= deletefront(first); break;
+        case 3:
+            display(first);break;
+         case 4:
+             exit(0);
+        }
+    }
     return 0;
 }
-
-void insert(struct queue *s, int value){
-    if(s->rear==MAX-1){
-
-        printf("queue is full");
-    }
-    else{
-            (s->rear)++;
-
-    }
-
-}
-
-void deleteitem(struct queue *q)
-{
-
-}
-
-void display(struct queue *q)
-{
-
-}
-
 
