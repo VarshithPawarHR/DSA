@@ -93,15 +93,22 @@ NODE insertfront(NODE first)
 NODE deletefront(NODE first)
 {
 NODE second;
-if(first==NULL)
+if(first==NULL) //check for empty list
 {
-    printf("stack is empty \n");
+printf("List is empty cannot deleted\n");
+return NULL; //we can replace NULL with first also
 }
-second = first->llink;
-printf("delted element is %d \n",first->info);
-freenode(first);
-second->llink = NULL;
-return(second);
+if(first->rlink==NULL) //delete if there is only one node
+{
+printf("item deleted=%d\n",first->info);
+free(first);
+return NULL;
+}
+second=first->rlink; //get the address of second node
+second->llink=NULL;//make second node as first node
+printf("item deleted=%d\n",first->info);
+free(first); //delete the first node
+return second;
 }
 
 void display( NODE first)
