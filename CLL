@@ -44,13 +44,13 @@ NODE insertrear(NODE last, int value) {
     else {
         temp->link = last->link;
         last->link = temp;
-        last = temp;
+
     }
-    return (last);
+    return (temp);
 }
 
 NODE deleterear(NODE last) {
-    NODE prev, cur;
+    NODE prev;
     if (last == NULL) {
         printf("List is empty\n");
         return last;
@@ -65,12 +65,11 @@ NODE deleterear(NODE last) {
         while (prev->link != last) {
             prev = prev->link;
         }
-        cur = last;
         prev->link = last->link;
-        last = prev;
-        printf("Deleted element is %d\n", cur->info);
-        freenode(cur);
-        return last;
+
+        printf("Deleted element is %d\n", last->info);
+        freenode(last);
+        return prev;
     }
 }
 
@@ -106,7 +105,7 @@ NODE insertright(NODE last, int key, int value) {
     NODE cur = last->link;  // Start from the first node
     NODE temp;
 
-    if (last->link == last) {
+    if (last->link == last&&last->info==key) {
         temp = getnode();
         temp->info = value;
         temp->link = last->link; // Link temp to itself
@@ -144,7 +143,7 @@ NODE deleteright(NODE last, int key) {
         printf("List is empty or contains only one node\n");
         return last;
     }
-   
+
 
     NODE cur, temp;
     cur = last->link;
