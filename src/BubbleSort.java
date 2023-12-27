@@ -18,14 +18,6 @@ public class BubbleSort {
         {
             System.out.println(a[i]);
         }
-
-
-
-
-
-
-
-
     }
     public static void swap(int [] a, int i, int j)
     {
